@@ -7,9 +7,6 @@
 #
 # apt install -y clang llvm lld
 #
-# Or get Clang/LLVM from https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/main/clang-r450784e.tar.gz
-# and add bin dir to PATH
-#
 # 2. Install required packages
 # apt install -y git zip build-essential xz-utils bison flex libz-dev libssl-dev libelf-dev bc cpio python3 pahole
 #
