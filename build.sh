@@ -1,3 +1,25 @@
+#!/bin/bash
+
+#
+# Tested on Kali
+#
+# 1. Install Clang/LLVM
+#
+# apt install -y clang llvm lld
+#
+# Or get Clang/LLVM from https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/main/clang-r450784e.tar.gz
+# and add bin dir to PATH
+#
+# 2. Install required packages
+# apt install -y git zip build-essential xz-utils bison flex libz-dev libssl-dev libelf-dev bc cpio python3 pahole
+#
+# 3. Run build.sh to build kernel, do a clean before build is recommended
+# make clean && rm -rf ./out
+# ./build.sh <your defconfig>
+#
+# 4. Image output to out/arch/arm64/boot/Image
+# AnyKernel3 zip output to out/AnyKernel3/<your defconfig>_kernel_*.zip
+
 set -e
 
 TARGET_DEFCONFIG=${1:-pineapple_gki_defconfig}
