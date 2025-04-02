@@ -23,7 +23,7 @@ TARGET_DEFCONFIG=${1:-pineapple_gki_defconfig}
 
 cd "$(dirname "$0")"
 
-LOCALVERSION=-DicKkernel-android14
+LOCALVERSION=-android14-Felixardian
 
 if [ "$LTO" == "thin" ]; then
   LOCALVERSION+="-thin"
@@ -56,10 +56,19 @@ make -j$(nproc) -C $(pwd) O=$(pwd)/out ${ARGS}
 
 cd out
 if [ ! -d AnyKernel3 ]; then
-  git clone --depth=1 https://github.com/gituser12138/Anykernel3.git
+  git clone --depth=1 https://github.com/Felixardian/AnyKernel3.git
 fi
-cp arch/arm64/boot/Image Anykernel3/zImage
-name=samsung${TARGET_DEFCONFIG%%_defconfig}_kernel_`cat include/config/kernel.release`_`date '+%Y_%m_%d'`
-cd Anykernel3
+cp arch/arm64/boot/Image AnyKernel3/zImage
+name=S24_kernel_`cat include/config/kernel.release`_`date '+%Y_%m_%d'`
+cd AnyKernel3
 zip -r ${name}.zip * -x *.zip
+cd ..
+cp arch/arm64/boot/Image AnyKernel3/tools/kernel
+cd AnyKernel3/tools
+chmod +x libmagiskboot.so
+lz4 boot.img.lz4
+./libmagiskboot.so repack boot.img ${name}.img 
+echo "boot.img output to $(realpath $name).img"
+cd ..
+cd ..
 echo "AnyKernel3 package output to $(realpath $name).zip"
