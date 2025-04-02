@@ -59,7 +59,7 @@ if [ ! -d AnyKernel3 ]; then
   git clone --depth=1 https://github.com/Felixardian/AnyKernel3.git
 fi
 cp arch/arm64/boot/Image AnyKernel3/zImage
-name=S24_kernel_`cat include/config/kernel.release`_`date '+%Y_%m_%d'`
+name=S24U_kernel_`cat include/config/kernel.release`_`date '+%Y_%m_%d'`
 cd AnyKernel3
 zip -r ${name}.zip * -x *.zip
 cd ..
